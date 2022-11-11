@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cqtalk.dao.ContestMapper">
+
+
+    <insert id="insertContest">
+        insert into t_contest (
+            contest_name,abbreviation,level_name,college_name,other_information,detail_information,comment_link,created_user)
+        values (#{contestName},#{abbreviation},#{levelName},#{collegeName},#{otherInformation},#{detailInformation},#{commentLink},#{createdUser})
+    </insert>
+
+    <select id="findContest" resultType="com.cqtalk.entity.Contest">
+        select * from t_contest
+    </select>
+
+    <select id="findById" resultType="com.cqtalk.entity.Contest">
+        select * from t_contest where id=#{id}
+    </select>
+
+    <update id="updateContestById">
+        update t_contest set contest_name=#{contestName},abbreviation=#{abbreviation},level_name=#{levelName},college_name=#{collegeName},other_information=#{otherInformation},detail_information=#{detailInformation},comment_link=#{commentLink},created_user=#{createdUser} where id=#{id}
+    </update>
+
+    <delete id="deleteById">
+        delete from t_contest where id=#{id}
+    </delete>
+
+
+
+</mapper>
