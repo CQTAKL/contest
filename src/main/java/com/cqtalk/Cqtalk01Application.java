@@ -1,5 +1,6 @@
 package com.cqtalk;
 
+import com.cqtalk.util.Role;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,6 +14,7 @@ public class Cqtalk01Application {
     public static void main(String[] args) {
         SpringApplication.run(Cqtalk01Application.class, args);
         log.info("项目启动成功");
+
     }
 
 }

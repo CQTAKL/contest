@@ -1,6 +1,7 @@
 package com.cqtalk.service;
 
 import com.cqtalk.entity.Contest;
+import com.cqtalk.util.RedisUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,9 @@ public class serviceTest {
 
     @Autowired
     private ContestService contestService;
+    
+    @Autowired
+    private RedisUtil redisUtil;
 
     @Test
     public void insertContest(){
@@ -44,7 +48,8 @@ public class serviceTest {
     }
 
     @Test
-    public void uodateById(){
+    public void updateById(){
+//        redisUtil.setString("type", "1");
         Contest contest = new Contest();
         contest.setId(8);
         contest.setContestName("大学生英语演讲与写作比赛");
