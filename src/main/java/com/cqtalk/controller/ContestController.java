@@ -23,7 +23,7 @@ public class ContestController {
     @PostMapping("/insert")
     public R<List<Contest>> save(@RequestBody Contest contest){
         log.info("新增竞赛，竞赛信息：{}",contest.toString());
-
+//判断是否是管理员
         String type = redisUtil.getString("type");
         if(type.equals("1")) {
 
@@ -35,7 +35,7 @@ public class ContestController {
             //        查询新增后的竞赛信息，并保存到redis中
             List<Contest> contests = contestService.findContest();
 
-            redisUtil.setString("contest",contests.toString());
+            redisUtil.setString("contests",contests.toString());
 
             return R.success(contests);
 
@@ -61,6 +61,7 @@ public class ContestController {
         if(result==null){
             return R.error("竞赛信息不存在");
         }
+        //判断是否是管理员
         String type = redisUtil.getString("type");
         if(type.equals("1")) {
             Integer i = contestService.updateContestById(contest);
@@ -71,7 +72,7 @@ public class ContestController {
 
             //        查询更新后的竞赛信息，并保存到redis中
             List<Contest> contests = contestService.findContest();
-            redisUtil.setString("contest", contests.toString());
+            redisUtil.setString("contests", contests.toString());
             return R.success("修改竞赛信息成功");
         }
 
@@ -82,12 +83,13 @@ public class ContestController {
 //    删除竞赛信息
     @DeleteMapping("/delete")
     public R deleteContestById(@RequestBody Contest contest){
+        //判断是否是管理员
         String type = redisUtil.getString("type");
         if(type.equals("1")) {
             contestService.deleteById(contest);
 //        查询删除后的竞赛信息，并保存到redis中
             List<Contest> contests = contestService.findContest();
-            redisUtil.setString("contest", contests.toString());
+            redisUtil.setString("contests", contests.toString());
             return R.success("删除成功");
         }
 
