@@ -24,16 +24,24 @@ public class ContestController {
     public R<List<Contest>> save(@RequestBody Contest contest){
         log.info("新增竞赛，竞赛信息：{}",contest.toString());
 
-        redisUtil.setString("contest",contest.toString());
+        String type = redisUtil.getString("type");
+        if(type.equals("1")) {
 
-        try {
-            contestService.addNewContest(contest);
-        }catch (Exception ex){
-            return R.error("新增竞赛失败");
+            try {
+                contestService.addNewContest(contest);
+            } catch (Exception ex) {
+                return R.error("新增竞赛失败");
+            }
+            //        查询新增后的竞赛信息，并保存到redis中
+            List<Contest> contests = contestService.findContest();
+
+            redisUtil.setString("contest",contests.toString());
+
+            return R.success(contests);
+
         }
-        List<Contest> contests = contestService.findContest();
 
-        return R.success(contests);
+        return R.error("新增失败或执行人没有权限");
 
     }
 //查询竞赛信息
@@ -53,21 +61,37 @@ public class ContestController {
         if(result==null){
             return R.error("竞赛信息不存在");
         }
-        Integer i = contestService.updateContestById(contest);
+        String type = redisUtil.getString("type");
+        if(type.equals("1")) {
+            Integer i = contestService.updateContestById(contest);
 
-        if(i!=1){
-            return R.error("修改过程产生未知异常");
+            if (i != 1) {
+                return R.error("修改过程产生未知异常");
+            }
+
+            //        查询更新后的竞赛信息，并保存到redis中
+            List<Contest> contests = contestService.findContest();
+            redisUtil.setString("contest", contests.toString());
+            return R.success("修改竞赛信息成功");
         }
 
-        return R.success("修改竞赛信息成功");
+        return R.error("修改失败或执行人没有权限");
 
     }
 
 //    删除竞赛信息
     @DeleteMapping("/delete")
     public R deleteContestById(@RequestBody Contest contest){
-        contestService.deleteById(contest);
-        return R.success("删除成功");
+        String type = redisUtil.getString("type");
+        if(type.equals("1")) {
+            contestService.deleteById(contest);
+//        查询删除后的竞赛信息，并保存到redis中
+            List<Contest> contests = contestService.findContest();
+            redisUtil.setString("contest", contests.toString());
+            return R.success("删除成功");
+        }
+
+        return R.error("删除失败或执行人没有权限删除");
     }
 
 
