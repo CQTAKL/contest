@@ -23,7 +23,7 @@ public class ContestController {
     @PostMapping("/insert")
     public R<List<Contest>> save(@RequestBody Contest contest){
         log.info("新增竞赛，竞赛信息：{}",contest.toString());
-//判断是否是管理员
+//判断是否是管理员，根据在数据库中 区分管理员与用户存的字段为type,在redis中存的是type,所以这里获得type,type=0代表用户，type=1代表管理员
         String type = redisUtil.getString("type");
         if(type.equals("1")) {
 
