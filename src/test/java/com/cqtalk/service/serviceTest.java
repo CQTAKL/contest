@@ -31,6 +31,7 @@ public class serviceTest {
         contest.setLevelName("国家级、省级");
 
         List<Contest> contests = contestService.addNewContest(contest);
+
         System.out.println(contests);
     }
 

@@ -19,15 +19,6 @@ public class ContestServiceImpl implements ContestService {
     public List<Contest> addNewContest(Contest contest) {
 
 
-        /*contest.setContestName(contest.getContestName());
-        contest.setAbbreviation(contest.getAbbreviation());
-        contest.setCollegeName(contest.getCollegeName());
-        contest.setLevelName(contest.getLevelName());
-        contest.setCommentLink(contest.getCommentLink());
-        contest.setCreatedUser(contest.getCreatedUser());
-        contest.setDetailInformation(contest.getDetailInformation());
-        contest.setOtherInformation(contest.getOtherInformation());*/
-
 
         Integer integer = contestMapper.insertContest(contest);
 
