@@ -58,7 +58,7 @@ public class serviceTest {
         contest.setCollegeName("外国语学院");
         contest.setLevelName("国家级、省级");
 
-        contestService.updateContestById(contest);
+        contestService.updateContestById(contest.getId());
     }
 
     @Test

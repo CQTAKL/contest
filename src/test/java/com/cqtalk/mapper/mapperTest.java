@@ -44,7 +44,7 @@ public class mapperTest {
         contest.setAbbreviation("设计");
         contest.setCollegeName("建工学院");
         contest.setLevelName("国家级、省级");
-        contestMapper.updateContestById(contest);
+        contestMapper.updateContestById(contest.getId());
 
 
     }

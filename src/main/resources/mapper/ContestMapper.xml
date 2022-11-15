@@ -18,6 +18,9 @@
     <select id="findById" resultType="com.cqtalk.entity.Contest">
         select * from t_contest where id=#{id}
     </select>
+    <select id="findByContestName" resultType="com.cqtalk.entity.Contest">
+        select * from t_contest where contest_name=#{contestName}
+    </select>
 
     <update id="updateContestById">
         update t_contest set contest_name=#{contestName},abbreviation=#{abbreviation},level_name=#{levelName},college_name=#{collegeName},other_information=#{otherInformation},detail_information=#{detailInformation},comment_link=#{commentLink},created_user=#{createdUser} where id=#{id}

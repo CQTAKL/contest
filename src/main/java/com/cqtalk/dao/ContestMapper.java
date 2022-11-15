@@ -15,7 +15,9 @@ public interface ContestMapper extends BaseMapper<Contest> {
 
     Contest findById(Integer id);
 //修改操作
-    Integer updateContestById(Contest contest);
+    Integer updateContestById(Integer id);
 
     Integer deleteById(Contest contest);
+
+    Contest findByContestName(String name);
 }
