@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.List;
 
 @ApiModel("竞赛实体类")
 @Data
@@ -17,7 +18,7 @@ import java.io.Serializable;
 public class Contest implements Serializable {
 
     @ApiModelProperty("竞赛id")
-    private Integer id;
+    private int id;
     @ApiModelProperty("竞赛名称")
     private String contestName;
     @ApiModelProperty("竞赛简称")
@@ -35,8 +36,8 @@ public class Contest implements Serializable {
     private String commentLink;
 
     @ApiModelProperty("管理员")
-    private String createdUser;
+    private List<Integer> administrators;
     @ApiModelProperty("竞赛状态0：未删除，1：已删除，2：审核中")
-    private String state;
+    private int status;
 }
 

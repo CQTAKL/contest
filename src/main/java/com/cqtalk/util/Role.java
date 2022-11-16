@@ -13,14 +13,15 @@ import lombok.Getter;
 
 //@Getter
 public enum Role {
-    TYPE("1"),CONTESTS("contests:token");
+    state1(1),CONTESTS("contests:token"),state0(0),state2(2);
 
 
 
 
     private String typeName;
+    private int number;
 
-    private Integer time;
+
 
     Role(String typeName) {
         this.typeName = typeName;
@@ -29,6 +30,12 @@ public enum Role {
         return typeName;
     }
 
+    Role(int number) {
+        this.number = number;
+    }
+    public int getnumber() {
+        return number;
+    }
 
 
 }

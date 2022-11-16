@@ -35,7 +35,7 @@ public class ContestServiceImpl implements ContestService {
     }
 //修改竞赛信息
     @Override
-    public Integer updateContestById(Integer id) {
+    public Integer updateContestById(int id) {
 
         /*contest.setContestName(contest.getContestName());
         contest.setAbbreviation(contest.getAbbreviation());
@@ -52,7 +52,7 @@ public class ContestServiceImpl implements ContestService {
     }
 
     @Override
-    public Contest findById(Integer id) {
+    public Contest findById(int id) {
         Contest contest = contestMapper.findById(id);
 
         return contest;
@@ -60,9 +60,6 @@ public class ContestServiceImpl implements ContestService {
 
     @Override
     public void deleteById(Contest contest) {
-
-
-
         contestMapper.deleteById(contest);
 
     }

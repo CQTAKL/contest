@@ -11,12 +11,13 @@ public interface ContestService{
 
     List<Contest> findContest();
 
-    Integer updateContestById(Integer id);
+    Integer updateContestById(int id);
 
-    Contest findById(Integer id);
+    Contest findById(int id);
 
     void deleteById(Contest contest);
 
     Contest findByContestName(String name);
+
 
 }
