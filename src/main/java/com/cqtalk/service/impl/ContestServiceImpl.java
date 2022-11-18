@@ -35,7 +35,7 @@ public class ContestServiceImpl implements ContestService {
     }
 //修改竞赛信息
     @Override
-    public Integer updateContestById(int id) {
+    public Integer updateContestById(Contest contest) {
 
         /*contest.setContestName(contest.getContestName());
         contest.setAbbreviation(contest.getAbbreviation());
@@ -46,7 +46,7 @@ public class ContestServiceImpl implements ContestService {
         contest.setDetailInformation(contest.getDetailInformation());
         contest.setOtherInformation(contest.getOtherInformation());*/
 
-        Integer result = contestMapper.updateContestById(id);
+        Integer result = contestMapper.updateContestById(contest);
 
         return result;
     }

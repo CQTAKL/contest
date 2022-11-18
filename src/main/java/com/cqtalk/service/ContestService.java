@@ -11,7 +11,7 @@ public interface ContestService{
 
     List<Contest> findContest();
 
-    Integer updateContestById(int id);
+    Integer updateContestById(Contest contest);
 
     Contest findById(int id);
 

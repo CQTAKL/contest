@@ -32,11 +32,6 @@ public class ContestController {
 //    @Autowired
 //    private userService userService;
 
-//    获取枚举类型的值
-//    1已删除
-    private int roleType = Role.state1.getnumber();
-//    0未删除
-    private int rolestate = Role.state0.getnumber();
 
     //添加竞赛信息
     @ApiOperation("添加竞赛信息")
@@ -51,10 +46,9 @@ public class ContestController {
         //目前没拉取user，所有无法使用userService
         //        String type = userService.getStatusById(id);
         String type=" ";
-        if(type.equals(roleType)) {
+        if(type.equals(Role.state1.getStatus())) {
                 try {
-//                    设置管理员
-                    contest = setAdministrators(contest,id);
+                    contest.setAdministrators(id);
                     contestService.addNewContest(contest);
                 } catch (Exception ex) {
                     return ObjectResult.error("400","新增失败");
@@ -87,9 +81,9 @@ public class ContestController {
         //目前没拉取user，所有无法使用userService
         //        String type = userService.getStatusById(id);
          String type=" ";
-        if(type.equals(roleType)) {
-            contest = setAdministrators(contest, id);
-            Integer i = contestService.updateContestById(contest.getId());
+        if(type.equals(Role.state1.getStatus())) {
+            contest.setAdministrators(id);
+            Integer i = contestService.updateContestById(contest);
             if (i != 1) {
                 return ObjectResult.error("400","修改过程产生未知异常");
             }
@@ -111,8 +105,8 @@ public class ContestController {
 //目前没拉去user，所有无法使用userService
 //        String type = userService.getStatusById(id);
         String type=" ";
-        if(type.equals(roleType)) {
-            contest.setStatus(roleType);
+        if(type.equals(Role.state1.getStatus())) {
+            contest.setStatus(Role.state1.getStatus());
             contestService.deleteById(contest);
             return ObjectResult.SUCCESS;
         }
@@ -120,20 +114,4 @@ public class ContestController {
         return ObjectResult.error("400","删除失败或执行人没有权限删除");
     }
 
-//判断用户是否存在于管理员中，如果不存在，则加入
-    public Contest setAdministrators(Contest contest,int id){
-        List<Integer> administrators = contest.getAdministrators();
-        int count = administrators.size();
-        for(Integer admin : administrators){
-            if(id==admin){
-                break;
-            }
-            count--;
-        }
-        if(count == 0){
-            administrators.add(id);
-            contest.setAdministrators(administrators);
-        }
-        return contest;
-    }
 }

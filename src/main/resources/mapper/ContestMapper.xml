@@ -7,8 +7,8 @@
 
     <insert id="insertContest">
         insert into t_contest (
-            contest_name,abbreviation,level_name,college_name,other_information,detail_information,comment_link,created_user,status)
-        values (#{contestName},#{abbreviation},#{levelName},#{collegeName},#{otherInformation},#{detailInformation},#{commentLink},#{createdUser},#{status})
+            contest_name,abbreviation,level_name,college_name,other_information,detail_information,comment_link,administrators,status)
+        values (#{contestName},#{abbreviation},#{levelName},#{collegeName},#{otherInformation},#{detailInformation},#{commentLink},#{administrators},#{status})
     </insert>
 
     <select id="findContest" resultType="com.cqtalk.entity.Contest">
@@ -23,11 +23,11 @@
     </select>
 
     <update id="updateContestById">
-        update t_contest set contest_name=#{contestName},abbreviation=#{abbreviation},level_name=#{levelName},college_name=#{collegeName},other_information=#{otherInformation},detail_information=#{detailInformation},comment_link=#{commentLink},created_user=#{createdUser} status=#{status} where id=#{id}
+        update t_contest set contest_name=#{contestName},abbreviation=#{abbreviation},level_name=#{levelName},college_name=#{collegeName},other_information=#{otherInformation},detail_information=#{detailInformation},comment_link=#{commentLink},administrators=#{administrators}, status=#{status} where id=#{id}
     </update>
 
     <update id="deleteById">
-        update t_contest set contest_name=#{contestName},abbreviation=#{abbreviation},level_name=#{levelName},college_name=#{collegeName},other_information=#{otherInformation},detail_information=#{detailInformation},comment_link=#{commentLink},created_user=#{createdUser} status=#{status} where id=#{id}
+        update t_contest set status=#{status} where id=#{id}
     </update>
 
 

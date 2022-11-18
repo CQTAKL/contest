@@ -1,9 +1,12 @@
 package com.cqtalk.entity;
 
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import io.swagger.models.auth.In;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,6 +21,7 @@ import java.util.List;
 public class Contest implements Serializable {
 
     @ApiModelProperty("竞赛id")
+    @TableId(value = "id",type = IdType.AUTO)
     private int id;
     @ApiModelProperty("竞赛名称")
     private String contestName;
@@ -25,7 +29,7 @@ public class Contest implements Serializable {
     private String abbreviation;
 
     @ApiModelProperty("竞赛级别")
-    private String levelName;
+    private int levelName;
     @ApiModelProperty("举办学院名")
     private String collegeName;
     @ApiModelProperty("其他信息")
@@ -36,7 +40,7 @@ public class Contest implements Serializable {
     private String commentLink;
 
     @ApiModelProperty("管理员")
-    private List<Integer> administrators;
+    private int administrators;
     @ApiModelProperty("竞赛状态0：未删除，1：已删除，2：审核中")
     private int status;
 }

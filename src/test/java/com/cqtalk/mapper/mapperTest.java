@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootTest
@@ -20,11 +21,11 @@ public class mapperTest {
     @Test
     public void insert(){
         Contest contest = new Contest();
-        contest.setId(10);
+        contest.setId(2);
         contest.setContestName("大学生结构设计竞赛");
         contest.setAbbreviation("结构设计");
         contest.setCollegeName("建工学院");
-        contest.setLevelName("国家级、省级");
+        contest.setLevelName(1);
         Integer i = contestMapper.insertContest(contest);
         System.out.println(i);
     }
@@ -39,12 +40,13 @@ public class mapperTest {
     @Test
     public void updateContestById(){
         Contest contest = new Contest();
-        contest.setId(4);
-        contest.setContestName("大学生结构设计竞赛");
-        contest.setAbbreviation("设计");
+        contest.setId(1);
+        contest.setContestName("大学生数学建模竞赛");
+        contest.setAbbreviation("结构设计");
         contest.setCollegeName("建工学院");
-        contest.setLevelName("国家级、省级");
-        contestMapper.updateContestById(contest.getId());
+        contest.setLevelName(2);
+        contestMapper.updateContestById(contest);
+
 
 
     }
@@ -57,7 +59,10 @@ public class mapperTest {
 
     @Test
     public void deleteById(){
-        Integer i = contestMapper.deleteById(7);
+        Contest contest = new Contest();
+        contest.setId(2);
+        contest.setStatus(0);
+        Integer i = contestMapper.deleteById(contest);
         System.out.println(i);
     }
 
