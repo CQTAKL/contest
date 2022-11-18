@@ -7,7 +7,7 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 
 @Slf4j
 @SpringBootApplication
-@ServletComponentScan
+@ServletComponentScan("com.cqtalk.dao")
 public class CqTalkApplication {
 
     public static void main(String[] args) {

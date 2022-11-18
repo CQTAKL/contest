@@ -4,6 +4,7 @@ package com.cqtalk.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.cqtalk.util.levelName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import io.swagger.models.auth.In;
@@ -29,7 +30,7 @@ public class Contest implements Serializable {
     private String abbreviation;
 
     @ApiModelProperty("竞赛级别")
-    private int levelName;
+    private com.cqtalk.util.levelName levelName;
     @ApiModelProperty("举办学院名")
     private String collegeName;
     @ApiModelProperty("其他信息")

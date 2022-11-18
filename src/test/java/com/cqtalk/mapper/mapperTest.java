@@ -2,6 +2,7 @@ package com.cqtalk.mapper;
 
 import com.cqtalk.dao.ContestMapper;
 import com.cqtalk.entity.Contest;
+import com.cqtalk.util.levelName;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,18 +22,18 @@ public class mapperTest {
     @Test
     public void insert(){
         Contest contest = new Contest();
-        contest.setId(2);
+        contest.setId(4);
         contest.setContestName("大学生结构设计竞赛");
         contest.setAbbreviation("结构设计");
         contest.setCollegeName("建工学院");
-        contest.setLevelName(1);
-        Integer i = contestMapper.insertContest(contest);
+        contest.setLevelName(levelName.levelNameA);
+        Integer i = contestMapper.insert(contest);
         System.out.println(i);
     }
 
     @Test
     public void select(){
-        List<Contest> contest = contestMapper.findContest();
+        List<Contest> contest = contestMapper.selectList(null);
         System.out.println(contest);
 
     }
@@ -44,16 +45,13 @@ public class mapperTest {
         contest.setContestName("大学生数学建模竞赛");
         contest.setAbbreviation("结构设计");
         contest.setCollegeName("建工学院");
-        contest.setLevelName(2);
-        contestMapper.updateContestById(contest);
-
-
-
+        contest.setLevelName(levelName.levelNameB);
+        contestMapper.update(contest,null);
     }
 
     @Test
     public void findById(){
-        Contest i = contestMapper.findById(1);
+        Contest i = contestMapper.selectById(1);
         System.out.println(i);
     }
 

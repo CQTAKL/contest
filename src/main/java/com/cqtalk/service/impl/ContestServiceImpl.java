@@ -1,5 +1,7 @@
 package com.cqtalk.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.cqtalk.dao.ContestMapper;
 import com.cqtalk.entity.Contest;
 import com.cqtalk.service.ContestService;
@@ -9,65 +11,43 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ContestServiceImpl implements ContestService {
+public class ContestServiceImpl extends ServiceImpl<ContestMapper,Contest> implements ContestService {
 
     @Autowired
     private ContestMapper contestMapper;
 
 //增加竞赛信息
     @Override
-    public List<Contest> addNewContest(Contest contest) {
-
-
-
-        Integer integer = contestMapper.insertContest(contest);
-
-        List<Contest> contests = contestMapper.findContest();
-        return contests;
-
-
+    public void addNewContest(Contest contest) {
+        int i = contestMapper.insert(contest);
     }
 //查询所有
     @Override
     public List<Contest> findContest() {
-        List<Contest> contests = contestMapper.findContest();
+        List<Contest> contests = contestMapper.selectList(null);
         return contests;
     }
 //修改竞赛信息
     @Override
     public Integer updateContestById(Contest contest) {
 
-        /*contest.setContestName(contest.getContestName());
-        contest.setAbbreviation(contest.getAbbreviation());
-        contest.setCollegeName(contest.getCollegeName());
-        contest.setLevelName(contest.getLevelName());
-        contest.setCommentLink(contest.getCommentLink());
-        contest.setCreatedUser(contest.getCreatedUser());
-        contest.setDetailInformation(contest.getDetailInformation());
-        contest.setOtherInformation(contest.getOtherInformation());*/
+        int i = contestMapper.update(contest, null);
 
-        Integer result = contestMapper.updateContestById(contest);
-
-        return result;
+        return i;
     }
 
     @Override
     public Contest findById(int id) {
-        Contest contest = contestMapper.findById(id);
+        Contest contest = contestMapper.selectById(id);
 
         return contest;
     }
 
     @Override
     public void deleteById(Contest contest) {
-        contestMapper.deleteById(contest);
-
+        contestMapper.updateById(contest);
     }
 
-    @Override
-    public Contest findByContestName(String name) {
-        return  contestMapper.findByContestName(name);
-    }
 
 
 }

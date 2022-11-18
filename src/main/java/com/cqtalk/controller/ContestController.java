@@ -4,19 +4,16 @@ import com.cqtalk.entity.Contest;
 import com.cqtalk.service.ContestService;
 import com.cqtalk.util.ObjectResult;
 import com.cqtalk.util.RedisUtil;
-import com.cqtalk.util.Role;
+import com.cqtalk.util.levelName;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.flyway.FlywayDataSource;
-import org.springframework.data.relational.core.sql.In;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-import java.util.Map;
+
 //
 @Api("竞赛管理api")
 @RestController
@@ -46,7 +43,7 @@ public class ContestController {
         //目前没拉取user，所有无法使用userService
         //        String type = userService.getStatusById(id);
         String type=" ";
-        if(type.equals(Role.state1.getStatus())) {
+        if(type.equals(levelName.state1.getStatus())) {
                 try {
                     contest.setAdministrators(id);
                     contestService.addNewContest(contest);
@@ -81,7 +78,7 @@ public class ContestController {
         //目前没拉取user，所有无法使用userService
         //        String type = userService.getStatusById(id);
          String type=" ";
-        if(type.equals(Role.state1.getStatus())) {
+        if(type.equals(levelName.state1.getStatus())) {
             contest.setAdministrators(id);
             Integer i = contestService.updateContestById(contest);
             if (i != 1) {
@@ -105,12 +102,11 @@ public class ContestController {
 //目前没拉去user，所有无法使用userService
 //        String type = userService.getStatusById(id);
         String type=" ";
-        if(type.equals(Role.state1.getStatus())) {
-            contest.setStatus(Role.state1.getStatus());
+        if(type.equals(levelName.state1.getStatus())) {
+            contest.setStatus(levelName.state1.getStatus());
             contestService.deleteById(contest);
             return ObjectResult.SUCCESS;
         }
-
         return ObjectResult.error("400","删除失败或执行人没有权限删除");
     }
 

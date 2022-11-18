@@ -2,6 +2,7 @@ package com.cqtalk.service;
 
 import com.cqtalk.entity.Contest;
 import com.cqtalk.util.RedisUtil;
+import com.cqtalk.util.levelName;
 import io.swagger.models.auth.In;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,10 +31,10 @@ public class serviceTest {
         contest.setContestName("英语演讲与写作比赛");
         contest.setAbbreviation("英语演讲");
         contest.setCollegeName("外国语学院");
-        contest.setLevelName(1);
-        List<Contest> contests = contestService.addNewContest(contest);
+        contest.setLevelName(levelName.levelNameA);
+        contestService.addNewContest(contest);
 
-        System.out.println(contests);
+
     }
 
     @Test
@@ -53,11 +54,11 @@ public class serviceTest {
     public void updateById(){
 //        redisUtil.setString("type", "1");
         Contest contest = new Contest();
-        contest.setId(1);
+        contest.setId(3);
         contest.setContestName("大学生英语演讲与写作比赛");
         contest.setAbbreviation("英语演讲");
         contest.setCollegeName("外国语学院");
-        contest.setLevelName(1);
+        contest.setLevelName(levelName.levelNameB);
 
         contestService.updateContestById(contest);
     }
@@ -66,7 +67,7 @@ public class serviceTest {
     public void deleteById(){
         Contest contest = new Contest();
         contest.setId(1);
-        contest.setStatus(0);
+        contest.setStatus(1);
 
         contestService.deleteById(contest);
     }

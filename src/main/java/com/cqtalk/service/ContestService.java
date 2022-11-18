@@ -1,13 +1,14 @@
 package com.cqtalk.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.cqtalk.entity.Contest;
 import org.springframework.data.relational.core.sql.In;
 
 import java.util.List;
 
-public interface ContestService{
+public interface ContestService extends IService<Contest> {
 
-    List<Contest> addNewContest(Contest contest);
+    void addNewContest(Contest contest);
 
     List<Contest> findContest();
 
@@ -17,7 +18,6 @@ public interface ContestService{
 
     void deleteById(Contest contest);
 
-    Contest findByContestName(String name);
 
 
 }
